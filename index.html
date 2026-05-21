@@ -6,43 +6,67 @@
   <title>EVAN STORE - Top Up Robux & FF Murah</title>
   <style>
     body {
-      background: #0f0f0f;
+      background: #000;
       color: #fff;
       font-family: 'Courier New', monospace;
       padding: 20px;
       line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255, 60, 0, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 100, 0, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 0, 0, 0.2) 0%, transparent 50%);
+      animation: api 6s ease-in-out infinite alternate;
     }
+    
+    @keyframes api {
+      0% { background-position: 0% 0%, 100% 100%, 50% 50%; }
+      100% { background-position: 100% 100%, 0% 0%, 80% 20%; }
+    }
+    
     .container {
       max-width: 600px;
       margin: auto;
-      background: #1a1a1a;
+      background: rgba(26, 26, 26, 0.9);
       padding: 25px;
       border-radius: 12px;
       border: 2px solid #ff3c00;
-      box-shadow: 0 0 20px rgba(255, 60, 0, 0.3);
+      box-shadow: 0 0 30px rgba(255, 60, 0, 0.6), inset 0 0 20px rgba(255, 60, 0, 0.1);
+      backdrop-filter: blur(5px);
     }
+    
     h1 { 
       color: #ff3c00; 
       text-align: center; 
       margin-bottom: 5px;
+      text-shadow: 0 0 10px #ff3c00, 0 0 20px #ff3c00;
+      animation: kedip 2s infinite;
     }
+    
+    @keyframes kedip {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+    
     .garis { 
       text-align: center; 
       color: #ff3c00; 
-      margin: 20px 0; 
+      margin: 20px 0;
+      text-shadow: 0 0 5px #ff3c00;
     }
+    
     pre {
       white-space: pre-wrap;
       word-wrap: break-word;
       font-size: 14px;
-      background: #111;
+      background: rgba(17, 17, 17, 0.8);
       padding: 15px;
       border-radius: 8px;
-      border: 1px solid #333;
+      border: 1px solid #ff3c00;
     }
+    
     .btn-wa {
       display: block;
-      background: #25D366;
+      background: linear-gradient(45deg, #25D366, #128C7E);
       color: white;
       text-align: center;
       padding: 15px;
@@ -51,8 +75,38 @@
       font-weight: bold;
       font-size: 18px;
       margin-top: 20px;
+      box-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
+      transition: all 0.3s;
     }
-    .btn-wa:hover { background: #1ebe5d; }
+    
+    .btn-wa:hover { 
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(37, 211, 102, 0.8);
+    }
+    
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ff3c00;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 60, 0, 0.8);
+      z-index: 999;
+      animation: muter 3s linear infinite;
+    }
+    
+    @keyframes muter {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .music-btn:active { transform: scale(0.9); }
   </style>
 </head>
 <body>
@@ -131,7 +185,33 @@ BONUS: Potong 500 perak untuk transaksi pertama!
     <a href="https://wa.me/6285185024482?text=Bang%20mau%20order" class="btn-wa">
       💬 ORDER VIA WHATSAPP
     </a>
-    
   </div>
+
+  <!-- TOMBOL MUSIK FUNKOT -->
+  <button class="music-btn" onclick="toggleMusic()" id="musicBtn">▶️</button>
+  
+  <!-- AUDIO DJ MUTIARA FUNKOT -->
+  <audio id="bgMusic" loop>
+    <source src="https://github.com/username/repo/raw/main/mutiara-funkot.mp3" type="audio/mpeg">
+    Browser lu gak support audio bang
+  </audio>
+
+  <script>
+    let musik = document.getElementById("bgMusic");
+    let tombol = document.getElementById("musicBtn");
+    let isPlaying = false;
+
+    function toggleMusic() {
+      if (isPlaying) {
+        musik.pause();
+        tombol.innerHTML = "▶️";
+        isPlaying = false;
+      } else {
+        musik.play();
+        tombol.innerHTML = "⏸️";
+        isPlaying = true;
+      }
+    }
+  </script>
 </body>
 </html>
